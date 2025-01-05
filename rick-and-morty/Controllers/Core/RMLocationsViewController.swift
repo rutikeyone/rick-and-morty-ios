@@ -1,7 +1,7 @@
 import UIKit
 
 class RMLocationViewController: UIViewController, HasUINavigationData {
-    func title() -> String? {
+    func getTitle() -> String? {
         return "Locations"
     }
     
@@ -9,7 +9,7 @@ class RMLocationViewController: UIViewController, HasUINavigationData {
         return 2
     }
     
-    func tabUIImage() -> UIImage? {
+    func getTabUIImage() -> UIImage? {
         return UIImage(systemName: "globe")
     }
 
@@ -17,7 +17,7 @@ class RMLocationViewController: UIViewController, HasUINavigationData {
         super.viewDidLoad()
     
         view.backgroundColor = .systemBackground
-        title = title()
+        title = getTitle()
     }
 
 }

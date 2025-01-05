@@ -1,7 +1,7 @@
 import UIKit
 
 final class RMEpisodeViewController: UIViewController, HasUINavigationData {
-    func title() -> String? {
+    func getTitle() -> String? {
         return "Episodes"
     }
     
@@ -9,7 +9,7 @@ final class RMEpisodeViewController: UIViewController, HasUINavigationData {
         return 3
     }
     
-    func tabUIImage() -> UIImage? {
+    func getTabUIImage() -> UIImage? {
         return UIImage(systemName: "tv")
     }
 

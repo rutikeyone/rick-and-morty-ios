@@ -2,11 +2,11 @@ import UIKit
 
 protocol HasUINavigationData {
     
-    func title() -> String?
+    func getTitle() -> String?
     
     func tag() -> Int
      
-    func tabUIImage() -> UIImage?
+    func getTabUIImage() -> UIImage?
 }
 
 final class RMTabViewController: UITabBarController{
@@ -29,7 +29,11 @@ final class RMTabViewController: UITabBarController{
             
             if let hasUiNavData = UIViewController as? HasUINavigationData {
                 uiNavController.navigationBar.prefersLargeTitles = true
-                uiNavController.tabBarItem = UITabBarItem(title: hasUiNavData.title(), image: hasUiNavData.tabUIImage(), selectedImage: nil)
+                uiNavController.tabBarItem = UITabBarItem(
+                    title: hasUiNavData.getTitle(),
+                    image: hasUiNavData.getTabUIImage(),
+                    selectedImage: nil
+                )
             }
             
             return uiNavController

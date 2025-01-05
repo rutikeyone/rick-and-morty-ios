@@ -6,10 +6,10 @@ final class RMCharacterViewController: UIViewController, HasUINavigationData {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        title = title()
+        title = getTitle()
     }
     
-    func title() -> String? {
+    func getTitle() -> String? {
         return "Characters"
     }
     
@@ -17,7 +17,7 @@ final class RMCharacterViewController: UIViewController, HasUINavigationData {
         return 1
     }
     
-    func tabUIImage() -> UIImage? {
+    func getTabUIImage() -> UIImage? {
         return UIImage(systemName: "person")
     }
     

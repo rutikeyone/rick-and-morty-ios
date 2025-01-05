@@ -1,7 +1,7 @@
 import UIKit
 
 final class RMSettingsViewController: UIViewController, HasUINavigationData {
-    func title() -> String? {
+    func getTitle() -> String? {
         return "Settings"
     }
     
@@ -9,7 +9,7 @@ final class RMSettingsViewController: UIViewController, HasUINavigationData {
         return 4
     }
     
-    func tabUIImage() -> UIImage? {
+    func getTabUIImage() -> UIImage? {
         return UIImage(systemName: "gear")
     }
 
