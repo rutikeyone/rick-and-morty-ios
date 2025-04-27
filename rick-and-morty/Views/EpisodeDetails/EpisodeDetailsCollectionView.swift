@@ -96,8 +96,10 @@ final class EpisodeDetailsCollectionView: UIView {
         )
 
         let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: .init(widthDimension: .fractionalWidth(1),
-                              heightDimension: .absolute(80)),
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(80)
+            ),
             subitems: [item]
         )
 

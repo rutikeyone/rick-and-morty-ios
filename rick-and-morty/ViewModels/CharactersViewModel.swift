@@ -35,7 +35,7 @@ final class CharactersViewModel: NSObject {
         isInitialLoading = true
         
         let request = APIRequest.listCharactersRequest
-        let expecting = GetAllCharactersResponse.self
+        let expecting = GetCharactersResponse.self
         
         APIService.shared.execute(request, expecting: expecting) { [weak self] result in
             guard let self = self, let delegate = delegate else { return }
@@ -72,7 +72,7 @@ final class CharactersViewModel: NSObject {
             self.delegate?.loadMoreInProgress(with: self.isLoadingMoreProgress)
         }
         
-        APIService.shared.execute(request, expecting: GetAllCharactersResponse.self) { [weak self] result in
+        APIService.shared.execute(request, expecting: GetCharactersResponse.self) { [weak self] result in
             guard let self = self, let delegate = delegate else { return }
                         
             switch result {

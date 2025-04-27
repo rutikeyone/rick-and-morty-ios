@@ -1,6 +1,6 @@
 import Foundation
 
-struct GetAllEpisodesResponse: Codable {
+struct GetEpisodesResponse: Codable {
     let info: PageInfo?
     let results: [Episode]
 }

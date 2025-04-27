@@ -15,11 +15,11 @@ final class HomeTabViewController: UITabBarController{
     
     private func setUpTabs() {
         let characterViewController = CharactersViewController()
-        let locationViewController = LocationViewController()
+        let locationsViewController = LocationViewController()
         let episodesViewController = EpisodesViewController()
         let settingsViewController = SettingsViewController()
-        
-        let viewControllers = [characterViewController, locationViewController, episodesViewController, settingsViewController]
+
+        let viewControllers = [characterViewController, locationsViewController, episodesViewController, settingsViewController]
         
         let uiNavControllers = viewControllers.map { uiViewController in
             let uiNavController = UINavigationController(rootViewController: uiViewController)

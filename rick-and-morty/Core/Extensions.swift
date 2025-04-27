@@ -37,3 +37,11 @@ extension UIImageView {
 extension UIDevice {
     static let isiPhone = UIDevice.current.userInterfaceIdiom == .phone
 }
+
+extension Collection {
+    
+    subscript(safe index: Index) -> Element? {
+        indices.contains(index) ? self[index] : nil
+    }
+    
+}

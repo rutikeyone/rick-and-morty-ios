@@ -3,7 +3,7 @@ import UIKit
 class EpisodeDetailsView: UIView {
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
@@ -32,8 +32,6 @@ class EpisodeDetailsView: UIView {
     
     private func setupSpinnerView() {
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 96),
-            spinner.heightAnchor.constraint(equalToConstant: 96),
             spinner.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
@@ -78,10 +76,10 @@ class EpisodeDetailsView: UIView {
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }   
 }

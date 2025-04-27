@@ -54,10 +54,10 @@ class EpisodeDetailsViewController: UIViewController {
         view.addSubview(episodeDetailsView)
     
         NSLayoutConstraint.activate([
-            episodeDetailsView.topAnchor.constraint(equalTo: view.topAnchor),
-            episodeDetailsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            episodeDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            episodeDetailsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            episodeDetailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            episodeDetailsView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            episodeDetailsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            episodeDetailsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

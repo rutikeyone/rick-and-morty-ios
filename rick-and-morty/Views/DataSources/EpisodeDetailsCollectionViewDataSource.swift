@@ -50,7 +50,7 @@ class EpisodeDetailsCollectionViewDataSource: NSObject, UICollectionViewDataSour
             
             let character = data[indexPath.row]
             
-            cell.setupCell(with: character)
+            cell.configure(with: character)
             return cell
         }
     }

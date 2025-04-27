@@ -1,0 +1,16 @@
+PODS:
+  - VerticalAlignmentLabel (0.1.0)
+
+DEPENDENCIES:
+  - VerticalAlignmentLabel
+
+SPEC REPOS:
+  trunk:
+    - VerticalAlignmentLabel
+
+SPEC CHECKSUMS:
+  VerticalAlignmentLabel: 8a13ee9970aa38868aa40fece249dbc2a9df59ed
+
+PODFILE CHECKSUM: 1ce67772c7d97a07812d4aea313228f1ded1c503
+
+COCOAPODS: 1.16.2

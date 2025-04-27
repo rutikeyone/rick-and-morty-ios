@@ -76,13 +76,13 @@ final class CharactersViewController: UIViewController, CharacterListViewDelegat
     }
     
     @objc private func didTapSearch() {
-        let searchViewController = SearchViewController(config: .init(type: .characters))
+        let searchViewController = CharacterSearchViewController()
         
         navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     func didLoadInitial(_ characters: [Character]) {
-        dataSource.setCharacters(characters)
+        dataSource.updateCharacters(characters)
         characterListView.collectionView.reloadData()
         characterListView.didLoadInitial()
     }

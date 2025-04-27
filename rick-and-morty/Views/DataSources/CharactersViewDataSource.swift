@@ -5,7 +5,7 @@ final class CharactersViewDataSource: NSObject, UICollectionViewDataSource {
     
     private var characters: [Character] = []
     
-    func setCharacters(_ characters: [Character]) {
+    func updateCharacters(_ characters: [Character]) {
         self.characters = characters
     }
     
@@ -43,7 +43,7 @@ final class CharactersViewDataSource: NSObject, UICollectionViewDataSource {
         ) as? CharacterCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        cell.setupCell(with: characters[indexPath.row])
+        cell.configure(with: characters[indexPath.row])
         
         return cell
     }

@@ -9,21 +9,23 @@ final class EpisodesViewController: UIViewController, UINavigationData {
     }
     
     private lazy var episodesView: EpisodeListView = EpisodeListView(
+        episodeListDelegate: EpisodeListDelegate(
+            didSelectItem: {[weak self] index in
+                guard let self = self else { return }
+                
+                let episode = self.viewModel.episodes[index]
+                let url = episode.url
+                
+                let episodeDetailsViewController = EpisodeDetailsViewController(urlString: url)
         
-        didSelectItem: {[weak self] index in
-            guard let self = self else { return }
-            
-            let episode = self.viewModel.episodes[index]
-            let url = episode.url
-            
-            let episodeDetailsViewController = EpisodeDetailsViewController(urlString: url)
-    
-            self.navigationController?.pushViewController(episodeDetailsViewController, animated: true)
-        }, loadMore: {[weak self] in
-            guard let self = self else { return }
-            
-            self.viewModel.fetchEpisodesByNextPage()
-        }
+                self.navigationController?.pushViewController(episodeDetailsViewController, animated: true)
+            }, loadMore: {[weak self] in
+                guard let self = self else { return }
+                
+                self.viewModel.fetchEpisodesByNextPage()
+            }
+        ),
+        episodeListDataSource: EpisodesViewDataSource()
     )
     
     private let viewModel: EpisodesViewModel = EpisodesViewModel()
@@ -90,8 +92,6 @@ final class EpisodesViewController: UIViewController, UINavigationData {
     }
     
     @objc private func didTapSearch() {
-        let searchViewController = SearchViewController(config: .init(type: .episodes))
-        
-        navigationController?.pushViewController(searchViewController, animated: true)
+     
     }
 }

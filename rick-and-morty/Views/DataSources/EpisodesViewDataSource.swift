@@ -5,7 +5,7 @@ final class EpisodesViewDataSource: NSObject, UICollectionViewDataSource {
     
     private var episodes: [Episode] = []
     
-    func setEpisodes(episodes: [Episode]) {
+    func updateEpisodes(episodes: [Episode]) {
         self.episodes = episodes
     }
     

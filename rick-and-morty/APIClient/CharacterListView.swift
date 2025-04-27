@@ -6,7 +6,7 @@ final class CharacterListView: UIView {
     private let dataSource: CharactersViewDataSource
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
@@ -73,8 +73,6 @@ final class CharacterListView: UIView {
     
     fileprivate func setupSpinnerView() {
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 96),
-            spinner.heightAnchor.constraint(equalToConstant: 96),
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])

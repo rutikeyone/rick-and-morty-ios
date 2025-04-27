@@ -11,7 +11,7 @@ final class CharacterDetailsView: UIView {
     private let didSelectEpisode: (String?) -> Void
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.hidesWhenStopped = true
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
@@ -43,8 +43,6 @@ final class CharacterDetailsView: UIView {
     
     private func setupSpinnerView() {
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 96),
-            spinner.heightAnchor.constraint(equalToConstant: 96),
             spinner.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])

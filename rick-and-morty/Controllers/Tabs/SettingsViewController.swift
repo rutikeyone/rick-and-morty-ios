@@ -11,7 +11,7 @@ final class SettingsViewController: UIViewController, UINavigationData {
         }
     }
     
-    private lazy var viewModel =  SettingsViewModel(
+    private lazy var viewModel = SettingsViewModel(
         cells: SettingOption.allCases.compactMap({ option in
             return SettingCell(type: option) { [weak self] option in
                 guard let self else {
@@ -39,14 +39,15 @@ final class SettingsViewController: UIViewController, UINavigationData {
         addChild(settingsUIController)
         settingsUIController.didMove(toParent: self)
         
+        
         view.addSubview(settingsUIController.view)
         settingsUIController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            settingsUIController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            settingsUIController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            settingsUIController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            settingsUIController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            settingsUIController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            settingsUIController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            settingsUIController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            settingsUIController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -62,6 +63,7 @@ final class SettingsViewController: UIViewController, UINavigationData {
         } else {
             if let windowScene = view.window?.windowScene {
                 SKStoreReviewController.requestReview(in: windowScene)
+                
             }
         }
     }

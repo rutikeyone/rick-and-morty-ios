@@ -75,7 +75,7 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         statusLabel.text = nil
     }
     
-    public func setupCell(with character: Character) {
+    public func configure(with character: Character) {
         nameLabel.text = character.name
         
         setupStatus(with: character)

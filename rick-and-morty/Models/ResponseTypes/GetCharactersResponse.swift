@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct GetAllCharactersResponse: Codable {
+struct GetCharactersResponse: Codable {
     let info: PageInfo?
     let results: [Character]
 }

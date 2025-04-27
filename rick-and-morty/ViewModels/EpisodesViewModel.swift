@@ -31,7 +31,7 @@ final class EpisodesViewModel {
         
         let request = APIRequest.listEpisodesRequest
         
-        APIService.shared.execute(request, expecting: GetAllEpisodesResponse.self) {[weak self] result in
+        APIService.shared.execute(request, expecting: GetEpisodesResponse.self) {[weak self] result in
             guard let self = self else {
                 return
             }
@@ -63,7 +63,7 @@ final class EpisodesViewModel {
         
         isLoadingMoreProgress.value = true
         
-        APIService.shared.execute(request, expecting: GetAllEpisodesResponse.self) { [weak self] result in
+        APIService.shared.execute(request, expecting: GetEpisodesResponse.self) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -76,7 +76,7 @@ final class EpisodesViewModel {
                 let newCount = moreEpisodes.count
                 let total = originalCount + newCount
                 let startIndex = total - newCount
-                let endIndex = startIndex+newCount
+                let endIndex = startIndex + newCount
                 let arrayRange = Array(startIndex..<endIndex)
                 
                 let indexPathsToAdd: [IndexPath] = arrayRange.compactMap({

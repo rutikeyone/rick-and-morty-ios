@@ -1,28 +1,32 @@
-import Foundation
 import UIKit
 
-class EpisodeListView: UIView {
+class LocationsView: UIView {
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.hidesWhenStopped = true
+        let spinner = UIActivityIndicatorView(style: .medium)
         spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        
         return spinner
     }()
     
-    private let episodeListDelegate: EpisodeListDelegate
-    
-    private let episodeListDataSource = EpisodesViewDataSource()
+    private let locationListDelegate: LocationListDelegate
+    private let locationListDataSource: LocationsViewDataSource
     
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = SeparatorCollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 1
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = locationListDelegate
+        collectionView.dataSource = locationListDataSource
         
-        collectionView.register(CharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.identifier
+        collectionView.register(
+            LocationCollectionViewCell.self,
+            forCellWithReuseIdentifier: LocationCollectionViewCell.identifier
         )
         
         collectionView.register(
@@ -30,29 +34,24 @@ class EpisodeListView: UIView {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
             withReuseIdentifier: LoaderCollectionView.identifier
         )
-        
-        collectionView.delegate = episodeListDelegate
-        collectionView.dataSource = episodeListDataSource
-                
         return collectionView
     }()
     
     init(
-        didSelectItem: @escaping (Int) -> Void,
-        loadMore: @escaping () -> Void
+        locationListDelegate: LocationListDelegate,
+        locationListDataSource: LocationsViewDataSource
     ) {
-        self.episodeListDelegate = EpisodeListDelegate(
-            didSelectItem: didSelectItem, loadMore: loadMore
-        )
+        self.locationListDelegate = locationListDelegate
+        self.locationListDataSource = locationListDataSource
         
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
-        
+        backgroundColor = .systemBackground
         addSubviews(spinner, collectionView)
+        
         setupViews()
     }
-    
     
     override init(frame: CGRect) {
         fatalError("Unsupported")
@@ -69,45 +68,42 @@ class EpisodeListView: UIView {
     
     private func setupSpinnerView() {
         NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 96),
-            spinner.heightAnchor.constraint(equalToConstant: 96),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
         ])
         
         spinner.startAnimating()
-        collectionView.isHidden = false
-        
     }
     
     private func setupCollectionView() {
         NSLayoutConstraint.activate([
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
-    func didLoadInitialEpisodes(episodes: [Episode]) {
+    func didLoadInitialLocations(locations: [Location]) {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
+            self.collectionView.isHidden = false
             
-            self.episodeListDataSource.setEpisodes(episodes: episodes)
+            self.locationListDataSource.updateLocations(locations: locations)
             self.collectionView.reloadData()
         }
     }
     
     func updateShouldShowLoader(value: Bool) {
         DispatchQueue.main.async {
-            self.episodeListDelegate.updateShouldShowLoader(shouldShowLoader: value)
+            self.locationListDelegate.updateShouldShowLoader(shouldShowLoader: value)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
     
-    func appendItems(indexPaths: [IndexPath], episodes: [Episode]) {
+    func appendItems(indexPaths: [IndexPath], locations: [Location]) {
         DispatchQueue.main.async {
-            self.episodeListDataSource.appendEpisodes(episodes: episodes)
+            self.locationListDataSource.appendLocations(locations: locations)
             
             self.collectionView.performBatchUpdates {
                 self.collectionView.insertItems(at: indexPaths)
@@ -122,4 +118,5 @@ class EpisodeListView: UIView {
         
         flowLayout.invalidateLayout()
     }
+    
 }
